@@ -1,5 +1,6 @@
 from collections import Dict
 
+@value
 struct Rule(CollectionElement):
     var before: List[String]
     var after: List[String]
@@ -7,14 +8,6 @@ struct Rule(CollectionElement):
     fn __init__(inout self):
         self.before = List[String]()
         self.after = List[String]()
-
-    fn __copyinit__(inout self, existing: Self):
-        self.before = existing.before[:]
-        self.after = existing.after[:]
-
-    fn __moveinit__(inout self, owned existing: Self):
-        self.before = existing.before
-        self.after = existing.after
 
 fn main() raises:
     with open("./day5.txt", "r") as data:
