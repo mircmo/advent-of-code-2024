@@ -1,12 +1,5 @@
 from collections import Set
-from common import Vec2d, within_bounds
-
-var direction_map = List(
-    Vec2d(0, -1), # up
-    Vec2d(1, 0),  # right
-    Vec2d(0, 1),  # down 
-    Vec2d(-1, 0), # left
-)
+from common import Vec2d, direction_map, within_bounds
 
 fn main() raises:
     field = List[String]()
