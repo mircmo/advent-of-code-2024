@@ -1,13 +1,15 @@
 from collections import Set, Dict
 from common import Vec2d, within_bounds
 
+
 fn main() raises:
     field = List[String]()
     with open("./day8.txt", "r") as data:
         field = data.read().splitlines()
 
     var towers = Dict[String, List[Vec2d]]()
-    var antinode_positios = Set[String]()
+    var antinode_positios_p1 = Set[String]()
+    var antinode_positios_p2 = Set[String]()
 
     for y in range(len(field)):
         for x in range(len(field[y])):
@@ -24,8 +26,19 @@ fn main() raises:
                 anti_n1 = pos_a + diff
                 anti_n2 = pos_b[] - diff
                 if within_bounds(field, anti_n1):
-                    antinode_positios.add(str(anti_n1))
+                    antinode_positios_p1.add(str(anti_n1))
                 if within_bounds(field, anti_n2):
-                    antinode_positios.add(str(anti_n2))
+                    antinode_positios_p1.add(str(anti_n2))
 
-    print(len(antinode_positios))
+                # part two
+                next_pos = pos_a
+                while within_bounds(field, next_pos):
+                    antinode_positios_p2.add(str(next_pos))
+                    next_pos = next_pos + diff
+                next_pos = pos_b[]
+                while within_bounds(field, next_pos):
+                    antinode_positios_p2.add(str(next_pos))
+                    next_pos = next_pos - diff
+
+    print(len(antinode_positios_p1))
+    print(len(antinode_positios_p2))
